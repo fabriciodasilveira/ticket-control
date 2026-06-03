@@ -1,0 +1,56 @@
+```
+# Dependencies
+backend/venv/
+backend/.venv/
+frontend/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+venv/
+ENV/
+.env
+.env.local
+.env.*
+.env.local.*
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.well-known/
+instance/
+.webassets-cache
+
+# Build artifacts
+backend/dist/
+backend/build/
+frontend/dist/
+frontend/build/
+target/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment specific
+.env
+.env.local
+.env.*
+!.env.example
+```
