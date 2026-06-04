@@ -1,56 +1,15 @@
 ```
-# Dependencies
-backend/venv/
-backend/.venv/
-frontend/node_modules/
-
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-env/
-.venv/
-venv/
-ENV/
+
+# Environment variables
 .env
-.env.local
-.env.*
-.env.local.*
-.coverage
-coverage/
-htmlcov/
-.pytest_cache/
-.mypy_cache/
-.well-known/
-instance/
-.webassets-cache
 
-# Build artifacts
-backend/dist/
-backend/build/
-frontend/dist/
-frontend/build/
-target/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# Environment specific
-.env
-.env.local
-.env.*
-!.env.example
+# Local script files that might contain sensitive info
+run-tests-no-docker.sh
+infrastructure/backup.sh
+infrastructure/quick-deploy.sh
 ```

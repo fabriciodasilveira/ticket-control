@@ -9,9 +9,9 @@ from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from app.db.session import get_db
 from app.core.config import settings
-from app.models.user import User
+from app.db.session import get_db
+from app.models import User
 import uuid
 
 # Configuração de hashing de senha
