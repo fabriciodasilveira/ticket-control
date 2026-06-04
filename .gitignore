@@ -1,0 +1,15 @@
+```
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+
+# Local script files that might contain sensitive info
+run-tests-no-docker.sh
+infrastructure/backup.sh
+infrastructure/quick-deploy.sh
+```
