@@ -1,15 +1,1 @@
-```
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Environment variables
-.env
-
-# Local script files that might contain sensitive info
-run-tests-no-docker.sh
-infrastructure/backup.sh
-infrastructure/quick-deploy.sh
-```
+Nothing needs to be added to .gitignore since the changes only include markdown documentation files (.md) and a docker-compose.yml file, which are all source/config files that should be tracked in version control.
