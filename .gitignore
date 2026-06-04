@@ -5,11 +5,23 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Environment variables
+# Dependencies
+.venv/
+venv/
+env/
 .env
+.env.local
+.env.*
 
-# Local script files that might contain sensitive info
-run-tests-no-docker.sh
-infrastructure/backup.sh
-infrastructure/quick-deploy.sh
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
 ```
