@@ -418,7 +418,7 @@ class Evidence(Base, TimestampMixin):
     height = Column(Integer)
     compression_quality = Column(Integer, default=80)
     caption = Column(Text)
-    metadata = Column(JSONB)
+    metadata_json = Column('metadata', JSONB)
     is_verified = Column(Boolean, default=False)
     verified_by = Column(UUID(as_uuid=True), ForeignKey("users.id"))
     verified_at = Column(DateTime)
@@ -464,7 +464,7 @@ class TemperatureRecord(Base, TimestampMixin):
         Index('idx_temperature_records_assignment', 'task_assignment_id'),
         Index('idx_temperature_records_unit', 'unit_id'),
         Index('idx_temperature_records_type', 'temperature_type'),
-        Index('idx_temperature_records_date', 'recorded_at'),
+        Index('idx_temperature_records_date', 'created_at'),
     )
 
 
