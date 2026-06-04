@@ -18,12 +18,12 @@ class Settings(BaseSettings):
     API_PREFIX: str = "/api/v1"
     
     # Database
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/taskmanager"
+    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5434/taskmanager"
     DATABASE_POOL_SIZE: int = 10
     DATABASE_MAX_OVERFLOW: int = 20
     
     # Redis
-    REDIS_URL: str = "redis://localhost:6379/0"
+    REDIS_URL: str = "redis://localhost:6381/0"
     
     # Security
     SECRET_KEY: str = "your-secret-key-change-in-production"
@@ -33,7 +33,7 @@ class Settings(BaseSettings):
     
     # CORS
     CORS_ORIGINS: list[str] = [
-        "http://localhost:3000",
+        "http://localhost:3001",
         "http://localhost:8080",
         "https://taskmanager.com",
     ]
