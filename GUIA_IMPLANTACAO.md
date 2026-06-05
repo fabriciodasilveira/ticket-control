@@ -187,9 +187,9 @@ docker-compose logs -f
 
 ## Passo 6: Acessar a Aplicação
 
-- **Frontend**: http://localhost:3000 (ou https://seu-dominio.com em produção)
-- **Backend API**: http://localhost:8000/api/v1 (ou https://seu-dominio.com/api/v1 em produção)
-- **Documentação Swagger**: http://localhost:8000/docs
+- **Frontend**: http://localhost:3001 (ou https://seu-dominio.com em produção)
+- **Backend API**: http://localhost:8003/api/v1 (ou https://seu-dominio.com/api/v1 em produção)
+- **Documentação Swagger**: http://localhost:8003/docs
 
 ## Passo 7: Criar Usuário Administrador
 
@@ -203,7 +203,7 @@ docker exec -it taskmanager-backend bash
 python scripts/create_admin.py
 
 # OU usar a API diretamente
-curl -X POST http://localhost:8000/api/v1/auth/register \
+curl -X POST http://localhost:8003/api/v1/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@seu-dominio.com",
@@ -298,9 +298,9 @@ docker system prune -a
 docker-compose logs backend
 
 # Verificar se portas estão em uso
-sudo netstat -tulpn | grep :8000
-sudo netstat -tulpn | grep :3000
-sudo netstat -tulpn | grep :5432
+sudo netstat -tulpn | grep :8003
+sudo netstat -tulpn | grep :3001
+sudo netstat -tulpn | grep :5434
 ```
 
 ### Erro de conexão com banco de dados

@@ -3,7 +3,7 @@
 ## Base URL
 
 ```
-Development: http://localhost:8000/api/v1
+Development: http://localhost:8003/api/v1
 Production: https://api.taskmanager.com/api/v1
 ```
 
@@ -201,7 +201,7 @@ GET /api/v1/tasks?status=pending&priority=high&unit_id=uuid
 ### Criar Tarefa
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/tasks \
+curl -X POST http://localhost:8003/api/v1/tasks \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -217,7 +217,7 @@ curl -X POST http://localhost:8000/api/v1/tasks \
 ### Upload de Foto
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/evidence/upload \
+curl -X POST http://localhost:8003/api/v1/evidence/upload \
   -H "Authorization: Bearer <token>" \
   -F "file=@foto.jpg" \
   -F "task_assignment_id=uuid-da-atribuicao" \
@@ -227,7 +227,7 @@ curl -X POST http://localhost:8000/api/v1/evidence/upload \
 ### Completar Tarefa
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/tasks/{id}/complete \
+curl -X POST http://localhost:8003/api/v1/tasks/{id}/complete \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{

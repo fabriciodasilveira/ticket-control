@@ -58,11 +58,14 @@ Após a implantação:
 
 | Serviço | URL | Descrição |
 |---------|-----|-----------|
-| **API Backend** | http://localhost:8000 | API REST principal |
-| **Swagger UI** | http://localhost:8000/docs | Documentação interativa da API |
-| **ReDoc** | http://localhost:8000/redoc | Documentação alternativa |
-| **Health Check** | http://localhost:8000/health | Status do serviço |
-| **Frontend Web** | http://localhost:3000 | Interface web (se implantado) |
+| **API Backend** | http://localhost:8003 | API REST principal |
+| **Swagger UI** | http://localhost:8003/docs | Documentação interativa da API |
+| **ReDoc** | http://localhost:8003/redoc | Documentação alternativa |
+| **Health Check** | http://localhost:8003/health | Status do serviço |
+| **Frontend Web** | http://localhost:3001 | Interface web (se implantado) |
+| **PostgreSQL** | localhost:5434 | Banco de dados |
+| **Redis** | localhost:6381 | Cache |
+| **Nginx (Produção)** | localhost:82 | Reverse proxy (perfil production) |
 
 ## 🔐 Credenciais de Administrador
 
@@ -81,7 +84,7 @@ Senha: Admin@123
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
 │  │   Frontend   │  │    Mobile    │  │   API REST   │       │
 │  │   Next.js    │  │ React Native │  │   FastAPI    │       │
-│  │   :3000      │  │    Expo      │  │   :8000      │       │
+│  │   :3001      │  │    Expo      │  │   :8003      │       │
 │  └──────────────┘  └──────────────┘  └──────────────┘       │
 │                              │                               │
 │                              ▼                               │
@@ -96,7 +99,7 @@ Senha: Admin@123
 │              ┌───────────────┴───────────────┐              │
 │              ▼                               ▼              │
 │  ┌─────────────────────┐      ┌─────────────────────┐      │
-│  │   PostgreSQL :5432  │      │     Redis :6379     │      │
+│  │   PostgreSQL :5434  │      │     Redis :6381     │      │
 │  │   (Dados)           │      │   (Cache/Sessions)  │      │
 │  └─────────────────────┘      └─────────────────────┘      │
 │                                                               │
@@ -231,23 +234,24 @@ CORS_ORIGINS=["http://localhost:3000"]
 
 ### Frontend (.env.local)
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+NEXT_PUBLIC_API_URL=http://localhost:8003/api/v1
 ```
 
 ## 📊 Portas Utilizadas
 
-| Serviço | Porta | Protocolo |
-|---------|-------|-----------|
-| Frontend | 3000 | HTTP |
-| Backend API | 8000 | HTTP |
-| PostgreSQL | 5432 | TCP |
-| Redis | 6379 | TCP |
-| Nginx (prod) | 80/443 | HTTP/HTTPS |
+| Serviço | Porta Externa | Porta Interna | Protocolo | Conflito com Sistema |
+|---------|--------------|---------------|-----------|---------------------|
+| Frontend | 3001 | 3000 | HTTP | ✅ Não conflita (sistema usa 3000) |
+| Backend API | 8003 | 8000 | HTTP | ✅ Não conflita (sistema usa 8000) |
+| PostgreSQL | 5434 | 5432 | TCP | ✅ Não conflita (sistema usa 5432) |
+| Redis | 6381 | 6379 | TCP | ✅ Não conflita (sistema usa 6379) |
+| Nginx HTTP (prod) | 82 | 80 | HTTP | ✅ Não conflita (sistema usa 80, 81) |
+| Nginx HTTPS (prod) | 444 | 443 | HTTPS | ✅ Não conflita (sistema usa 9443) |
 
 ## 🧪 Testando a API
 
 ### Via Swagger UI
-1. Acesse http://localhost:8000/docs
+1. Acesse http://localhost:8003/docs
 2. Clique em `/api/v1/auth/login`
 3. Execute com:
    - username: `admin@taskmanager.com`
@@ -257,12 +261,12 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 ### Via curl
 ```bash
 # Login
-curl -X POST http://localhost:8000/api/v1/auth/login \
+curl -X POST http://localhost:8003/api/v1/auth/login \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "username=admin@taskmanager.com&password=Admin@123"
 
 # Listar usuários (requer token)
-curl http://localhost:8000/api/v1/users \
+curl http://localhost:8003/api/v1/users \
   -H "Authorization: Bearer SEU_TOKEN_AQUI"
 ```
 
@@ -271,9 +275,10 @@ curl http://localhost:8000/api/v1/users \
 ### Erro: "Port already in use"
 ```bash
 # Verificar processo usando a porta
-lsof -i :8000
-lsof -i :3000
-lsof -i :5432
+lsof -i :8003
+lsof -i :3001
+lsof -i :5434
+lsof -i :6381
 
 # Matar processo ou alterar portas no docker-compose.yml
 ```
@@ -330,7 +335,7 @@ docker-compose up -d
 Para dúvidas ou problemas, consulte:
 - Documentação em `/workspace/docs/`
 - Logs dos containers: `docker-compose logs`
-- Swagger UI: http://localhost:8000/docs
+- Swagger UI: http://localhost:8003/docs
 
 ---
 

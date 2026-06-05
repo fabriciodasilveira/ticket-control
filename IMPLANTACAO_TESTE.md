@@ -51,11 +51,11 @@ docker-compose ps
 
 ### Passo 5: Acessar a API
 
-A API estará disponível em: http://localhost:8000
+A API estará disponível em: http://localhost:8003
 
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
-- **Health Check**: http://localhost:8000/health
+- **Swagger UI**: http://localhost:8003/docs
+- **ReDoc**: http://localhost:8003/redoc
+- **Health Check**: http://localhost:8003/health
 
 ### Passo 6: Criar usuário Admin inicial
 
@@ -95,10 +95,10 @@ docker-compose up -d
 ```
 
 Isso iniciará:
-- PostgreSQL (porta 5432)
-- Redis (porta 6379)
-- Backend API (porta 8000)
-- Frontend Web (porta 3000)
+- PostgreSQL (porta 5434)
+- Redis (porta 6381)
+- Backend API (porta 8003)
+- Frontend Web (porta 3001)
 
 ### Passo 2: Aguardar build e inicialização
 
@@ -110,9 +110,9 @@ docker-compose logs -f
 
 ### Passo 3: Acessar as aplicações
 
-- **Frontend Web**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **Swagger UI**: http://localhost:8000/docs
+- **Frontend Web**: http://localhost:3001
+- **Backend API**: http://localhost:8003
+- **Swagger UI**: http://localhost:8003/docs
 
 ## Opção 3: Modo Desenvolvimento (Com Hot Reload)
 
@@ -186,12 +186,12 @@ docker-compose exec backend pytest
 
 ## Estrutura de Portas
 
-| Serviço | Porta | URL |
-|---------|-------|-----|
-| Frontend | 3000 | http://localhost:3000 |
-| Backend API | 8000 | http://localhost:8000 |
-| PostgreSQL | 5432 | localhost:5432 |
-| Redis | 6379 | localhost:6379 |
+| Serviço | Porta Externa | URL | Conflito |
+|---------|--------------|-----|----------|
+| Frontend | 3001 | http://localhost:3001 | ✅ Não conflita (sistema usa 3000) |
+| Backend API | 8003 | http://localhost:8003 | ✅ Não conflita (sistema usa 8000) |
+| PostgreSQL | 5434 | localhost:5434 | ✅ Não conflita (sistema usa 5432) |
+| Redis | 6381 | localhost:6381 | ✅ Não conflita (sistema usa 6379) |
 
 ## Credenciais de Teste
 
@@ -216,7 +216,7 @@ SECRET_KEY=sua-chave-secreta-para-testes
 DEBUG=true
 
 # CORS
-CORS_ORIGINS=["http://localhost:3000", "http://localhost:8080"]
+CORS_ORIGINS=["http://localhost:3001", "http://localhost:8080"]
 
 # Cloudflare R2 (opcional para testes)
 R2_ACCOUNT_ID=
@@ -234,9 +234,10 @@ Se alguma porta já estiver em uso:
 
 ```bash
 # Verificar qual processo está usando a porta
-lsof -i :8000
-lsof -i :3000
-lsof -i :5432
+lsof -i :8003
+lsof -i :3001
+lsof -i :5434
+lsof -i :6381
 
 # Matar o processo (cuidado!)
 kill -9 <PID>
@@ -274,7 +275,7 @@ docker-compose up -d
 
 ## Próximos Passos
 
-1. Acesse http://localhost:8000/docs para explorar a API
+1. Acesse http://localhost:8003/docs para explorar a API
 2. Crie usuários, cargos, setores e tarefas
 3. Teste os endpoints de autenticação
 4. Implemente o frontend ou mobile conforme necessário
