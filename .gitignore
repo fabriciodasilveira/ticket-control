@@ -1,41 +1,10 @@
-```
-# Environment variables
-.env
-.env.local
-.infrastructure/.env
+# Documentation and setup files
+*.md
+docs/
+README*
 
-# Dependencies
-.venv/
-venv/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# Docker
+docker-compose.yml
 
-# Build artifacts
-dist/
-build/
-*.egg-info/
-
-# Logs
-*.log
-
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Coverage
-.coverage
-coverage/
-htmlcov/
-
-# Testing
-.pytest_cache/
-.mypy_cache/
-```
+# Infrastructure
+infrastructure/
