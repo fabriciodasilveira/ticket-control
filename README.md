@@ -155,7 +155,7 @@ print('✅ Admin criado!')
 "
 
 # 6. Acessar a API
-# Swagger UI: http://localhost:8000/docs
+# Swagger UI: http://localhost:8003/docs
 ```
 
 ### Opção 3: Implantação Completa (Frontend + Backend)
@@ -173,11 +173,14 @@ Isso iniciará todos os serviços incluindo o frontend web.
 
 | Serviço | URL | Descrição |
 |---------|-----|-----------|
-| **API Backend** | http://localhost:8000 | API REST principal |
-| **Swagger UI** | http://localhost:8000/docs | Documentação interativa da API |
-| **ReDoc** | http://localhost:8000/redoc | Documentação alternativa |
-| **Health Check** | http://localhost:8000/health | Status do serviço |
-| **Frontend Web** | http://localhost:3000 | Interface web (se implantado) |
+| **API Backend** | http://localhost:8003 | API REST principal |
+| **Swagger UI** | http://localhost:8003/docs | Documentação interativa da API |
+| **ReDoc** | http://localhost:8003/redoc | Documentação alternativa |
+| **Health Check** | http://localhost:8003/health | Status do serviço |
+| **Frontend Web** | http://localhost:3001 | Interface web (se implantado) |
+| **PostgreSQL** | localhost:5434 | Banco de dados |
+| **Redis** | localhost:6381 | Cache |
+| **Nginx (Produção)** | localhost:82 | Reverse proxy (perfil production) |
 
 ## 🔐 Credenciais de Administrador
 
